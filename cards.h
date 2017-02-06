@@ -21,6 +21,9 @@ public:
     Card();
     std::string get_spanish_suit() const;
     std::string get_spanish_rank() const;
+    std::string get_english_suit() const;
+    std::string get_english_rank() const;
+    double get_value();
 private:
     suit_t suit;
     rank_t rank;
@@ -29,14 +32,16 @@ private:
 
 class Hand{
 public:
-    Hand();
+    void add_card(Card randomCard);
 private:
     std::vector<Card> hand;
+    double total;
 };
 
 class Player{
 public:
     Player(int m);
+    void change_money(int m);
 private:
     int money;
 };

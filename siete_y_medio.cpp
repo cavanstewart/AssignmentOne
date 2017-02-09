@@ -10,9 +10,12 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <cstdlib>
+#include <ctime>
 #include "cards.h"
 
 int main() {
+    srand(time(NULL));
     std::ofstream outputLog("gamelog.txt");
     Player user(100);
     bool play = true;
@@ -28,18 +31,25 @@ int main() {
             std::cin >> bet_amount;
         }
         bool draw = true;
+        bool winner = false;
         while(draw){
             std::string another_card;
             Card card;
             hand_player.add_card(card);
             std::cout << "Your cards:" << std::endl;
             hand_player.print_cards();
-            std::cout << "Your total is " << hand_player.get_total() << ". Do you want another card? (Enter Y or N): ";
+            std::cout << "Your total is " << hand_player.get_total();
+            if(hand_player.get_total() > 7.5){
+                std::cout << std::endl << "Too bad. You lose " << bet_amount << "." << std::endl;
+                user.change_money(bet_amount * -1);
+                winner = true;
+                break;
+            }
+            std::cout <<". Do you want another card? (Enter Y or N): ";
             std::cin >> another_card;
             if(another_card == "N")
                 draw = false;
         }
-        bool winner = false;
         while(!winner){
             Card card;
             hand_dealer.add_card(card);
@@ -70,14 +80,6 @@ int main() {
             std::cout << "Congratulations. You beat the casino!" << std::endl << std::endl << "Bye!" << std::endl;
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
     
     return 0;
 }

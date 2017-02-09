@@ -10,6 +10,9 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <cstdlib>
+#include <fstream>
+#include <ctime>
 
 Card::Card(){
     int r = 1 + rand() % 4;

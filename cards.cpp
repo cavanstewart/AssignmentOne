@@ -9,6 +9,10 @@
 #include "cards.h"
 #include <iostream>
 #include <vector>
+#include <string>
+#include <cstdlib>
+#include <fstream>
+#include <ctime>
 
 Card::Card(){
     int r = 1 + rand() % 4;
@@ -189,11 +193,24 @@ double Card::get_value(){
     return value;
 }
 
-
+Hand::Hand(){
+    total = 0;
+}
 void Hand::add_card(Card randomCard){
     hand.push_back(randomCard);
     total+= randomCard.get_value();
 }
+
+double Hand::get_total() const{
+    return total;
+}
+
+void Hand::print_cards() const{
+    for(int i = 0; i < hand.size(); i++){
+        std::cout<< "    " << hand[i].get_spanish_rank() << " de " << hand[i].get_spanish_suit() << " (" << hand[i].get_english_rank() << " " << hand[i].get_english_suit() << ")." << std::endl;
+    }
+}
+
 
 Player::Player(int m){
     money = m;
@@ -203,4 +220,6 @@ void Player::change_money(int m){
     money += m;
 }
 
-
+int Player::get_money(){
+    return money;
+}

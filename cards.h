@@ -32,7 +32,10 @@ private:
 
 class Hand{
 public:
+    Hand();
     void add_card(Card randomCard);
+    double get_total() const;
+    void print_cards() const;
 private:
     std::vector<Card> hand;
     double total;
@@ -42,6 +45,7 @@ class Player{
 public:
     Player(int m);
     void change_money(int m);
+    int get_money();
 private:
     int money;
 };

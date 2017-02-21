@@ -15,7 +15,7 @@
 #include <ctime>
 
 Card::Card(){
-    int r = 1 + rand() % 3;
+    int r = 1 + rand() % 4;//error fixed by classmate
     switch(r){
         case 1: suit = OROS; break;
         case 2: suit = COPAS; break;
